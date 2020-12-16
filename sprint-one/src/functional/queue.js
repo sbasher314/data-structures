@@ -21,7 +21,6 @@ var Queue = function() {
       storage.size--;
       return value;
     }
-    console.log(storage);
   };
 
   someInstance.size = function() {
