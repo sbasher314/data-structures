@@ -1,6 +1,6 @@
 var Queue = function() {
   var newQueue = Object.create(queueMethods);
-  newQueue.storage = {'head': 0, 'size': 0};
+  newQueue.storage = {'tail': 0, 'size': 0};
   return newQueue;
 };
 
@@ -12,14 +12,14 @@ queueMethods.size = function() {
 
 queueMethods.enqueue = function(value) {
   var storage = this.storage;
-  storage[storage.head + storage.size++] = value;
+  storage[storage.tail + storage.size++] = value;
 };
 
 queueMethods.dequeue = function() {
   var storage = this.storage;
   if (storage.size > 0) {
-    var value = storage[storage.head];
-    delete storage[storage.head++];
+    var value = storage[storage.tail];
+    delete storage[storage.tail++];
     storage.size--;
     return value;
   }

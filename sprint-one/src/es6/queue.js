@@ -1,6 +1,6 @@
 class Queue {
   constructor() {
-    this.storage = { 'head': 0, 'size': 0 };
+    this.storage = { 'tail': 0, 'size': 0 };
   }
 
   size() {
@@ -9,14 +9,14 @@ class Queue {
 
   enqueue(value) {
     var storage = this.storage;
-    storage[storage.head + storage.size++] = value;
+    storage[storage.tail + storage.size++] = value;
   }
 
   dequeue() {
     var storage = this.storage;
     if (storage.size > 0) {
-      var value = storage[storage.head];
-      delete storage[storage.head++];
+      var value = storage[storage.tail];
+      delete storage[storage.tail++];
       storage.size--;
       return value;
     }

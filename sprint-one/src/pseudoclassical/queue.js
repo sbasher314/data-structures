@@ -1,5 +1,5 @@
 var Queue = function() {
-  this.storage = {'head': 0, 'size': 0};
+  this.storage = {'tail': 0, 'size': 0};
 };
 
 Queue.prototype.size = function() {
@@ -8,14 +8,14 @@ Queue.prototype.size = function() {
 
 Queue.prototype.enqueue = function(value) {
   var storage = this.storage;
-  storage[storage.head + storage.size++] = value;
+  storage[storage.tail + storage.size++] = value;
 };
 
 Queue.prototype.dequeue = function() {
   var storage = this.storage;
   if (storage.size > 0) {
-    var value = storage[storage.head];
-    delete storage[storage.head++];
+    var value = storage[storage.tail];
+    delete storage[storage.tail++];
     storage.size--;
     return value;
   }
