@@ -24,4 +24,9 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should return false when attempting to remove items that are not in the set', function() {
+    var isRemoved = set.remove('Marlon Brando');
+    expect(isRemoved).to.equal(false);
+  });
+
 });

@@ -2,6 +2,7 @@
 
 var HashTable = function() {
   this._limit = 8;
+  this._itemCount = 0;
   this._storage = LimitedArray(this._limit);
 };
 
@@ -22,10 +23,12 @@ HashTable.prototype.resolveCollision = function(k, index, test) {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var isNew = true;
   if (this._storage.get(index) !== undefined && this._storage.get(index)[0] !== k) {
     index = this.resolveCollision(k, index, 'insert');
   }
   this._storage.set(index, [k, v]);
+  this._itemCount++;
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -46,6 +49,11 @@ HashTable.prototype.remove = function(k) {
     index = this.resolveCollision(k, index, 'retrieve');
   }
   this._storage.set(index, undefined);
+  this._itemCount--;
+};
+
+HashTable.prototype.count = function() {
+  return this._itemCount;
 };
 
 
