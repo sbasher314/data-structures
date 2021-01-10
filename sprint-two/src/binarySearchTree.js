@@ -9,19 +9,27 @@ var BinarySearchTree = function(value) {
 var methods = {};
 
 methods.insert = function(value) {
-  if (value < this.value) {
-    if (this.left === null) {
-      this.left = BinarySearchTree(value);
-    } else {
-      this.left.insert(value);
-    }
+  if (value === null) {
+    throw new Error('value is null');
   }
-  if (value > this.value) {
-    if (this.right === null) {
-      this.right = BinarySearchTree(value);
-    } else {
-      this.right.insert(value);
+  value = Number(value);
+  if (!isNaN(value)) {
+    if (value < this.value) {
+      if (this.left === null) {
+        this.left = BinarySearchTree(value);
+      } else {
+        this.left.insert(value);
+      }
     }
+    if (value > this.value) {
+      if (this.right === null) {
+        this.right = BinarySearchTree(value);
+      } else {
+        this.right.insert(value);
+      }
+    }
+  } else {
+    throw new Error('value is not sortable by number');
   }
 };
 
